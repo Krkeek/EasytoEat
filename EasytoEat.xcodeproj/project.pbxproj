@@ -7,13 +7,28 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		F48D19902F81770A00A81FCB /* EasytoEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasytoEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F48D19DC2F81C06100A81FCB /* EasytoEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasytoEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F48D19922F81770A00A81FCB /* EasytoEat */ = {
+		F48D19922F81770A00A81FCB /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = EasytoEat;
+			path = App;
+			sourceTree = "<group>";
+		};
+		F48D19A32F8179EC00A81FCB /* Networking */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		F48D19A62F817A0B00A81FCB /* Features */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Features;
+			sourceTree = "<group>";
+		};
+		F48D19BA2F81958B00A81FCB /* Core */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,17 +47,12 @@
 		F48D19872F81770A00A81FCB = {
 			isa = PBXGroup;
 			children = (
-				F48D19922F81770A00A81FCB /* EasytoEat */,
-				F48D19912F81770A00A81FCB /* Products */,
+				F48D19A62F817A0B00A81FCB /* Features */,
+				F48D19A32F8179EC00A81FCB /* Networking */,
+				F48D19922F81770A00A81FCB /* App */,
+				F48D19BA2F81958B00A81FCB /* Core */,
+				F48D19DC2F81C06100A81FCB /* EasytoEat.app */,
 			);
-			sourceTree = "<group>";
-		};
-		F48D19912F81770A00A81FCB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F48D19902F81770A00A81FCB /* EasytoEat.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -61,13 +71,16 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F48D19922F81770A00A81FCB /* EasytoEat */,
+				F48D19922F81770A00A81FCB /* App */,
+				F48D19A32F8179EC00A81FCB /* Networking */,
+				F48D19A62F817A0B00A81FCB /* Features */,
+				F48D19BA2F81958B00A81FCB /* Core */,
 			);
 			name = EasytoEat;
 			packageProductDependencies = (
 			);
 			productName = EasytoEat;
-			productReference = F48D19902F81770A00A81FCB /* EasytoEat.app */;
+			productReference = F48D19DC2F81C06100A81FCB /* EasytoEat.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -95,7 +108,7 @@
 			mainGroup = F48D19872F81770A00A81FCB;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = F48D19912F81770A00A81FCB /* Products */;
+			productRefGroup = F48D19872F81770A00A81FCB;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -246,10 +259,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2DRS6S443Q;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EasytoEat;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -288,10 +304,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2DRS6S443Q;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EasytoEat;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
