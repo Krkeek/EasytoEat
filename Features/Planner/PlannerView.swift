@@ -33,6 +33,58 @@ struct PlannerView: View {
             }
             .padding(.horizontal)
             
+            VStack {
+                let todayNutrition = vm.nutritionInfo(for: vm.selectedDate)
+                let eaten = todayNutrition.CaloriesAmount
+                let target = todayNutrition.CaloriesTarget
+                let remaining = max(target - eaten, 0)
+
+                ZStack {
+                    Gauge(value: eaten, in: 0...target) {
+                        Image(systemName: "flame.fill")
+                            .foregroundStyle(.red)
+                    } currentValueLabel: {
+                        Text("\(Int(eaten)) kcal")
+                            .font(.title2)
+                            .bold()
+                    }
+                    .gaugeStyle(.accessoryCircular)
+                    .scaleEffect(2)
+                    .padding(.top, 30)
+                    .padding(.bottom, 20)
+
+                    HStack {
+                        VStack {
+                            Text("Target")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text("\(Int(target))")
+                                .foregroundColor(.green)
+                                .font(.headline)
+                        }
+                        .frame(width: 200)
+                          
+                          Spacer()
+                            
+    
+                        VStack {
+                            Text("Remaining")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text("\(Int(remaining))")
+                                .foregroundColor(.red)
+                                .font(.headline)
+                        }
+                        .frame(width: 200)
+                      }
+                }
+                
+                Text("Calories")
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+            }
+
+
             List {
                 ForEach(MealType.allCases) { type in
                     let items = vm.items(for: type, today: vm.selectedDate)

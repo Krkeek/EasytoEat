@@ -42,4 +42,7 @@ enum PlannerItem: Identifiable {
             return "\(Int(totalCalories)) kcal"
         }
     }
+    
+    
+    
 }
