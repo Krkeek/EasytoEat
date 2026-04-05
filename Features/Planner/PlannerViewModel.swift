@@ -9,9 +9,9 @@ class PlannerViewModel: ObservableObject {
     
     func nutritionInfo(for date: Date) -> NutritionInfo {
 
-        let totalCarbs = 100.0
-        let totalFat = 50.0
-        let totalProtein = 80.0
+        let totalCarbs = 96.5
+        let totalFat = 43.0
+        let totalProtein = 143.0
         
         return NutritionInfo(
             id: UUID(),
@@ -23,7 +23,7 @@ class PlannerViewModel: ObservableObject {
             ProteinAmount: totalProtein,
             CarbsTarget: 300,
             FatTarget: 70,
-            ProteinTarget: 120
+            ProteinTarget: 180
         )
     }
     
