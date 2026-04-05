@@ -136,8 +136,17 @@ struct PlannerView: View {
                         
                         if !items.isEmpty {
                             Section(header: HStack {
-                                Text(type.rawValue)
-                                    .font(.headline)
+                                HStack(spacing: 4) {
+                                                Text(type.rawValue)
+                                                Text("•")
+                                                    .foregroundColor(.secondary)
+                                                Text("530kcal")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.regular)
+                                                    .foregroundColor(.secondary)
+                                            }
+                                            .font(.headline)
+                                            .textCase(nil)
                                 
                                 Spacer()
                                 
@@ -153,6 +162,13 @@ struct PlannerView: View {
                                     } label: {
                                         Label("Edit Layout", systemImage: "square.and.pencil")
                                     }
+                                    Button {
+                                        print("View Calories Info \(type.rawValue)")
+                                    } label: {
+                                        Label("Calories Info", systemImage: "flame.fill")
+                                    }
+                                    
+                                    Divider()
                                     
                                     Button(role: .destructive) {
                                         print("Clear all \(type.rawValue) meals")
@@ -189,17 +205,25 @@ struct PlannerView: View {
                                         Spacer()
                                         
                                         Menu {
+                                         
+                                            Button {
+                                                // edit
+                                            } label: {
+                                                Label("Customize", systemImage: "pencil")
+                                            }
+                                            Button {
+                                                // replace
+                                                } label: {
+                                                    Label("Replace", systemImage: "arrow.left.arrow.right")
+                                                }
+                                            
+                                            Divider()
                                             Button(role: .destructive) {
                                                 // delete
                                             } label: {
                                                 Label("Delete", systemImage: "trash")
                                             }
-                                            
-                                            Button {
-                                                // edit
-                                            } label: {
-                                                Label("Edit", systemImage: "pencil")
-                                            }
+                                          
                                         } label: {
                                             Image(systemName: "ellipsis")
                                                 .rotationEffect(.degrees(90))
@@ -282,7 +306,7 @@ struct PlannerView: View {
                 Capsule()
                     .fill(Color.secondary.opacity(0.3))
                     .frame(width: 40, height: 50)
-                    .padding(.top, 10)
+                    .padding()
 
                 HStack {
                     Text("Select Date")
