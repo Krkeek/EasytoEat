@@ -2,7 +2,8 @@ import SwiftUI
 
 struct PlannerView: View {
     @StateObject private var vm = PlannerViewModel()
-    
+    @State private var showDatePicker = false
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -16,9 +17,16 @@ struct PlannerView: View {
                     
                     Spacer()
                     
-                    Text(vm.title(for: vm.selectedDate))
-                        .font(.headline)
-                    
+                    Button {
+                        withAnimation {
+                            showDatePicker = true
+                        }
+                    } label: {
+                        Text(vm.title(for: vm.selectedDate))
+                            .font(.headline)
+                    }
+                    .buttonStyle(.plain)
+                        
                     Spacer()
                     
                     Button(action: {
@@ -127,7 +135,37 @@ struct PlannerView: View {
                         let items = vm.items(for: type, today: vm.selectedDate)
                         
                         if !items.isEmpty {
-                            Section(header: Text(type.rawValue)) {
+                            Section(header: HStack {
+                                Text(type.rawValue)
+                                    .font(.headline)
+                                
+                                Spacer()
+                                
+                                Menu {
+                                    Button {
+                                        print("Add meal to \(type.rawValue)")
+                                    } label: {
+                                        Label("Add Meal", systemImage: "plus")
+                                    }
+                                    
+                                    Button {
+                                        print("Edit layout for \(type.rawValue)")
+                                    } label: {
+                                        Label("Edit Layout", systemImage: "square.and.pencil")
+                                    }
+                                    
+                                    Button(role: .destructive) {
+                                        print("Clear all \(type.rawValue) meals")
+                                    } label: {
+                                        Label("Clear", systemImage: "trash")
+                                    }
+                                    
+                                } label: {
+                                    Image(systemName: "slider.horizontal.3")
+                                        .foregroundColor(.secondary)
+                                        .frame(width: 24, height: 24)
+                                }
+                            }) {
                                 ForEach(items, id: \.id) { item in
                                     HStack {
                                         if let imageSrc = item.imageSrc {
@@ -177,8 +215,28 @@ struct PlannerView: View {
                         }
                     }
                 }
+                .simultaneousGesture(
+                    DragGesture()
+                        .onEnded { value in
+                            let horizontal = value.translation.width
+                            let vertical = value.translation.height
+                            
+                            if abs(horizontal) > 60 && abs(horizontal) > abs(vertical) {
+                                if horizontal < -50 {
+                                    withAnimation {
+                                        vm.selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.selectedDate)!
+                                    }
+                                } else if horizontal > 50 {
+                                    withAnimation {
+                                        vm.selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.selectedDate)!
+                                    }
+                                }
+                            }
+                        }
+                )
             }
             .navigationBarTitleDisplayMode(.inline)
+            .contentShape(Rectangle())
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("EasytoEat")
@@ -191,26 +249,26 @@ struct PlannerView: View {
                         } label: {
                             Image(systemName: "plus")
                                 .font(.title2)
-                        }	
-
+                        }
+                        
                         Menu {
                             Button {
-                                     print("Regenerate Day tapped")
-                                 } label: {
-                                     Label("Regenerate Day", systemImage: "arrow.clockwise")
-                                 }
-
-                                 Button {
-                                     print("Edit Meal Layout tapped")
-                                 } label: {
-                                     Label("Edit Meal Layout", systemImage: "square.and.pencil")
-                                 }
-
-                                 Button(role: .destructive) {
-                                     print("Clear Day tapped")
-                                 } label: {
-                                     Label("Clear Day", systemImage: "trash")
-                                 }
+                                print("Regenerate Day tapped")
+                            } label: {
+                                Label("Regenerate Day", systemImage: "arrow.clockwise")
+                            }
+                            
+                            Button {
+                                print("Edit Meal Layout tapped")
+                            } label: {
+                                Label("Edit Meal Layout", systemImage: "square.and.pencil")
+                            }
+                            
+                            Button(role: .destructive) {
+                                print("Clear Day tapped")
+                            } label: {
+                                Label("Clear Day", systemImage: "trash")
+                            }
                         } label: {
                             Image(systemName: "ellipsis")
                                 .font(.title2)
@@ -219,5 +277,51 @@ struct PlannerView: View {
                 }
             }
         }
+        .sheet(isPresented: $showDatePicker) {
+            VStack(spacing: 20) {
+                Capsule()
+                    .fill(Color.secondary.opacity(0.3))
+                    .frame(width: 40, height: 50)
+                    .padding(.top, 10)
+
+                HStack {
+                    Text("Select Date")
+                        .font(.headline)
+                    Spacer()
+                    Button(action: {
+                        withAnimation {
+                            vm.selectedDate = Date()
+                            showDatePicker = false
+                        }
+                    }) {
+                        Text("Today")
+                            .fontWeight(.medium)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color.accentColor.opacity(0.1))
+                            .clipShape(Capsule())
+                    }
+                }
+                .padding(.horizontal)
+
+                DatePicker(
+                    "",
+                    selection: Binding(
+                        get: { vm.selectedDate },
+                        set: { newDate in
+                            withAnimation {
+                                vm.selectedDate = newDate
+                            }
+                        }
+                    ),
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(.graphical)
+                .labelsHidden()
+            }
+            .padding()
+            .presentationDetents([.medium])
+        }
+
     }
 }

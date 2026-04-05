@@ -6,7 +6,6 @@ class PlannerViewModel: ObservableObject {
     @Published var meals: [Meal] = PlannerMockData.meals
     @Published public var selectedDate = Date()
     
-    
     func nutritionInfo(for date: Date) -> NutritionInfo {
 
         let totalCarbs = 96.5
@@ -36,8 +35,14 @@ class PlannerViewModel: ObservableObject {
     
     
     func title(for date: Date) -> String {
-        if Calendar.current.isDateInToday(date) {
+        let calendar = Calendar.current
+        
+        if calendar.isDateInToday(date) {
             return "Today"
+        } else if calendar.isDateInTomorrow(date) {
+            return "Tomorrow"
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday"
         } else {
             return date.formatted(date: .abbreviated, time: .omitted)
         }
