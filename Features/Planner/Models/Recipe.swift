@@ -1,7 +1,10 @@
 import Foundation
 
-struct Recipe: Identifiable {
-    let id = UUID()
+struct Recipe {
+    let id: UUID
     let name: String
-    let items: [RecipeItem]
+    let ingredients: [Ingredient]
+    let imageSrc: String?
+    let createdAt: Date
+    let updatedAt: Date
 }
