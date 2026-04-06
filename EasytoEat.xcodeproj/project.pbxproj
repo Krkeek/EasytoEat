@@ -6,19 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F4110BD52F83C35E009D1D15 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = F4110BD42F83C346009D1D15 /* .swiftformat */; };
+		F4B653492F83C0C400AB7D2D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		F4110BD42F83C346009D1D15 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		F48D19DC2F81C06100A81FCB /* EasytoEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasytoEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F464622D2F83BE370094BA5F /* Data */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Data;
+			sourceTree = "<group>";
+		};
 		F48D19922F81770A00A81FCB /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = App;
-			sourceTree = "<group>";
-		};
-		F48D19A32F8179EC00A81FCB /* Networking */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		F48D19A62F817A0B00A81FCB /* Features */ = {
@@ -47,8 +54,10 @@
 		F48D19872F81770A00A81FCB = {
 			isa = PBXGroup;
 			children = (
+				F4110BD42F83C346009D1D15 /* .swiftformat */,
+				F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */,
+				F464622D2F83BE370094BA5F /* Data */,
 				F48D19A62F817A0B00A81FCB /* Features */,
-				F48D19A32F8179EC00A81FCB /* Networking */,
 				F48D19922F81770A00A81FCB /* App */,
 				F48D19BA2F81958B00A81FCB /* Core */,
 				F48D19DC2F81C06100A81FCB /* EasytoEat.app */,
@@ -65,14 +74,16 @@
 				F48D198C2F81770A00A81FCB /* Sources */,
 				F48D198D2F81770A00A81FCB /* Frameworks */,
 				F48D198E2F81770A00A81FCB /* Resources */,
+				F46462302F83BFCD0094BA5F /* Run Script */,
+				F46462312F83C0660094BA5F /* Run Script */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				F464622D2F83BE370094BA5F /* Data */,
 				F48D19922F81770A00A81FCB /* App */,
-				F48D19A32F8179EC00A81FCB /* Networking */,
 				F48D19A62F817A0B00A81FCB /* Features */,
 				F48D19BA2F81958B00A81FCB /* Core */,
 			);
@@ -122,10 +133,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B653492F83C0C400AB7D2D /* .swiftlint.yml in Resources */,
+				F4110BD52F83C35E009D1D15 /* .swiftformat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F46462302F83BFCD0094BA5F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
+		};
+		F46462312F83C0660094BA5F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat > /dev/null; then\n  swiftformat .\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F48D198C2F81770A00A81FCB /* Sources */ = {
