@@ -13,20 +13,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Check Formatting (SwiftFormat)
-      # --lint tells it to fail the build if code isn't formatted correctly
+      # 1. Install Tools (Fastest way via Brew)
+      - name: Install Linting Tools
+        run: |
+          brew install swiftlint swiftformat
+
+      # 2. Check Formatting
       - name: Run SwiftFormat
         run: swiftformat . --lint
 
-      # 2. Check Style (SwiftLint)
+      # 3. Check Style
       - name: Run SwiftLint
         run: swiftlint
 
-      # 3. Check Build (xcodebuild)
-      # Replace 'YourProjectName' and 'iPhone 15' as needed
+      # 4. Build App
+      # REPLACE 'YourProjectName' with your actual .xcodeproj name!
       - name: Build App
         run: |
           xcodebuild build \
             -scheme YourProjectName \
             -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
-            -quiet
+            -quiet \
+            CODE_SIGNING_ALLOWED=NO
