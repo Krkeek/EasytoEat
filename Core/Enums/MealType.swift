@@ -4,5 +4,7 @@ enum MealType: String, CaseIterable, Identifiable {
     case dinner = "Dinner"
     case snack = "Snack"
 
-    var id: String { rawValue }
+    var id: String {
+        rawValue
+    }
 }

@@ -1,16 +1,36 @@
 name: iOS CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Install SwiftLint
-        run: brew install swiftlint
+      # 1. Install Tools (Fastest way via Brew)
+      - name: Install Linting Tools
+        run: |
+          brew install swiftlint swiftformat
 
+      # 2. Check Formatting
+      - name: Run SwiftFormat
+        run: swiftformat . --lint
+
+      # 3. Check Style
       - name: Run SwiftLint
         run: swiftlint
+
+      # 4. Build App
+      - name: Build App
+        run: |
+          xcodebuild build \
+            -scheme EasytoEat \
+            -destination 'generic/platform=iOS Simulator' \
+            -quiet \
+            CODE_SIGNING_ALLOWED=NO

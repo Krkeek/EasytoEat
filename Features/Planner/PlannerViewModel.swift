@@ -1,18 +1,16 @@
 internal import Combine
 import Foundation
-
 import SwiftUI
 
 class PlannerViewModel: ObservableObject {
     @Published var meals: [Meal] = PlannerMockData.meals
-    @Published public var selectedDate = Date()
-    
-    func nutritionInfo(for date: Date) -> NutritionInfo {
+    @Published var selectedDate = Date()
 
+    func nutritionInfo(for date: Date) -> NutritionInfo {
         let totalCarbs = 96.5
         let totalFat = 43.0
         let totalProtein = 143.0
-        
+
         return NutritionInfo(
             id: UUID(),
             day: date,
@@ -26,16 +24,16 @@ class PlannerViewModel: ObservableObject {
             proteinTarget: 180
         )
     }
-    
+
     func items(for type: MealType, today: Date) -> [PlannerItem] {
         meals
             .filter { $0.type == type && Calendar.current.isDate($0.date, inSameDayAs: today) }
-            .flatMap { $0.items }
+            .flatMap(\.items)
     }
-    
+
     func title(for date: Date) -> String {
         let calendar = Calendar.current
-        
+
         if calendar.isDateInToday(date) {
             return "Today"
         } else if calendar.isDateInTomorrow(date) {

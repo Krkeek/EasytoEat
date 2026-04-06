@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		F4110BD52F83C35E009D1D15 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = F4110BD42F83C346009D1D15 /* .swiftformat */; };
 		F4B653492F83C0C400AB7D2D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */; };
+		F4FD1BEA2F83D747008DA022 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = F4FD1BE92F83D747008DA022 /* .swift-version */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F4110BD42F83C346009D1D15 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		F48D19DC2F81C06100A81FCB /* EasytoEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasytoEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		F4FD1BE92F83D747008DA022 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -59,6 +61,7 @@
 		F48D19872F81770A00A81FCB = {
 			isa = PBXGroup;
 			children = (
+				F4FD1BE92F83D747008DA022 /* .swift-version */,
 				F4110BD72F83C3DC009D1D15 /* .github */,
 				F4110BD42F83C346009D1D15 /* .swiftformat */,
 				F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4B653492F83C0C400AB7D2D /* .swiftlint.yml in Resources */,
+				F4FD1BEA2F83D747008DA022 /* .swift-version in Resources */,
 				F4110BD52F83C35E009D1D15 /* .swiftformat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,7 +188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftformat > /dev/null; then\n  swiftformat .\nfi\n";
+			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\n\nif which swiftformat > /dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
