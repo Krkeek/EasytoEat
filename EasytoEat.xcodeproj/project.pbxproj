@@ -18,6 +18,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F4110BD72F83C3DC009D1D15 /* .github */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = .github;
+			sourceTree = "<group>";
+		};
 		F464622D2F83BE370094BA5F /* Data */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Data;
@@ -54,6 +59,7 @@
 		F48D19872F81770A00A81FCB = {
 			isa = PBXGroup;
 			children = (
+				F4110BD72F83C3DC009D1D15 /* .github */,
 				F4110BD42F83C346009D1D15 /* .swiftformat */,
 				F4B653482F83C0BE00AB7D2D /* .swiftlint.yml */,
 				F464622D2F83BE370094BA5F /* Data */,
@@ -82,6 +88,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				F4110BD72F83C3DC009D1D15 /* .github */,
 				F464622D2F83BE370094BA5F /* Data */,
 				F48D19922F81770A00A81FCB /* App */,
 				F48D19A62F817A0B00A81FCB /* Features */,
