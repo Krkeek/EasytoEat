@@ -20,7 +20,7 @@ struct AppRouter: View {
 
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape")
+                    Label("Settings", systemImage: "gearshapee")
                 }
         }
     }
