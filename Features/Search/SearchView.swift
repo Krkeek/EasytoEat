@@ -218,36 +218,36 @@ enum SearchResult: Identifiable {
     
     var id: UUID {
         switch self {
-        case .food(let f): return f.id
-        case .recipe(let r): return r.id
+        case .food(let food): return food.id
+        case .recipe(let recipe): return recipe.id
         }
     }
     
     var name: String {
         switch self {
-        case .food(let f): return f.name
-        case .recipe(let r): return r.name
+        case .food(let food): return food.name
+        case .recipe(let recipe): return recipe.name
         }
     }
     
     var description: String? {
         switch self {
-        case .food(let f): return f.description
-        case .recipe(_): return nil
+        case .food(let food): return food.description
+        case .recipe: return nil
         }
     }
     
     var imageSrc: String? {
         switch self {
-        case .food(let f): return f.imageSrc
-        case .recipe(let r): return r.imageSrc
+        case .food(let food): return food.imageSrc
+        case .recipe(let recipe): return recipe.imageSrc
         }
     }
     
     var type: SearchScope {
         switch self {
-        case .food(_): return .food
-        case .recipe(_): return .recipes
+        case .food: return .food
+        case .recipe: return .recipes
         }
     }
 }

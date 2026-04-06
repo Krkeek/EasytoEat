@@ -35,14 +35,13 @@ enum PlannerItem: Identifiable {
             }
             
         case .recipe(let recipe):
-            let totalCalories = recipe.ingredients.reduce(0.0) { sum, ingredient in
+
+            let totalCalories = recipe.ingredients.reduce(0.0) { sum, _ in
                 return sum
             }
             
             return "\(Int(totalCalories)) kcal"
         }
     }
-    
-    
     
 }

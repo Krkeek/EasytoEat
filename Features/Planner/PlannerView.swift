@@ -1,3 +1,4 @@
+// swiftlint:disable type_body_length
 import SwiftUI
 
 struct PlannerView: View {
@@ -10,10 +11,10 @@ struct PlannerView: View {
                 HStack {
                     Button(action: {
                         vm.selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.selectedDate)!
-                    }) {
+                    }, label: {
                         Image(systemName: "chevron.left")
                             .font(.title2)
-                    }
+                    })
                     
                     Spacer()
                     
@@ -31,17 +32,18 @@ struct PlannerView: View {
                     
                     Button(action: {
                         vm.selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.selectedDate)!
-                    }) {
+                    }, label: {
                         Image(systemName: "chevron.right")
                             .font(.title2)
-                    }
+                    })
+                    
                 }
                 .padding(.horizontal)
                 
                 List {
                     let todayNutrition = vm.nutritionInfo(for: vm.selectedDate)
-                    let eaten = todayNutrition.CaloriesAmount
-                    let target = todayNutrition.CaloriesTarget
+                    let eaten = todayNutrition.caloriesAmount
+                    let target = todayNutrition.caloriesTarget
                     let remaining = max(target - eaten, 0)
                     
                     VStack {
@@ -88,11 +90,11 @@ struct PlannerView: View {
                                     Text("Carbs")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
-                                    Text("\(Int(todayNutrition.CarbsAmount))g")
+                                    Text("\(Int(todayNutrition.carbsAmount))g")
                                         .font(.caption2)
                                         .bold()
                                 }
-                                Gauge(value: todayNutrition.CarbsAmount, in: 0...todayNutrition.CarbsTarget) {}
+                                Gauge(value: todayNutrition.carbsAmount, in: 0...todayNutrition.carbsTarget) {}
                                     .gaugeStyle(.accessoryLinear)
                                     .tint(.blue)
                                     .frame(maxWidth: 100)
@@ -103,11 +105,11 @@ struct PlannerView: View {
                                     Text("Fat")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
-                                    Text("\(Int(todayNutrition.FatAmount))g")
+                                    Text("\(Int(todayNutrition.fatAmount))g")
                                         .font(.caption2)
                                         .bold()
                                 }
-                                Gauge(value: todayNutrition.FatAmount, in: 0...todayNutrition.FatTarget) {}
+                                Gauge(value: todayNutrition.fatAmount, in: 0...todayNutrition.fatTarget) {}
                                     .gaugeStyle(.accessoryLinear)
                                     .tint(.orange)
                                     .frame(maxWidth: 100)
@@ -118,11 +120,11 @@ struct PlannerView: View {
                                     Text("Protein")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
-                                    Text("\(Int(todayNutrition.ProteinAmount))g")
+                                    Text("\(Int(todayNutrition.proteinAmount))g")
                                         .font(.caption2)
                                         .bold()
                                 }
-                                Gauge(value: todayNutrition.ProteinAmount, in: 0...todayNutrition.ProteinTarget) {}
+                                Gauge(value: todayNutrition.proteinAmount, in: 0...todayNutrition.proteinTarget) {}
                                     .gaugeStyle(.accessoryLinear)
                                     .tint(.green)
                                     .frame(maxWidth: 100)
@@ -317,14 +319,14 @@ struct PlannerView: View {
                             vm.selectedDate = Date()
                             showDatePicker = false
                         }
-                    }) {
+                    }, label: {
                         Text("Today")
                             .fontWeight(.medium)
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
                             .background(Color.accentColor.opacity(0.1))
                             .clipShape(Capsule())
-                    }
+                    })
                 }
                 .padding(.horizontal)
 
@@ -349,3 +351,5 @@ struct PlannerView: View {
 
     }
 }
+
+// swiftlint:enable type_body_length

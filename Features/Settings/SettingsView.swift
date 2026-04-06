@@ -5,7 +5,7 @@ struct SettingsView: View {
         NavigationStack {
             List {
                 Section {
-                    HStack{
+                    HStack {
                         Image(systemName: "person.circle.fill")
                             .resizable()
                             .frame(width: 60, height: 60)

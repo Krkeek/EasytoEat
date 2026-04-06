@@ -77,11 +77,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48D199B2F81770B00A81FCB /* Build configuration list for PBXNativeTarget "EasytoEat" */;
 			buildPhases = (
+				F46462312F83C0660094BA5F /* SwiftFormat */,
+				F46462302F83BFCD0094BA5F /* SwiftLint */,
 				F48D198C2F81770A00A81FCB /* Sources */,
 				F48D198D2F81770A00A81FCB /* Frameworks */,
 				F48D198E2F81770A00A81FCB /* Resources */,
-				F46462302F83BFCD0094BA5F /* Run Script */,
-				F46462312F83C0660094BA5F /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -148,8 +148,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F46462302F83BFCD0094BA5F /* Run Script */ = {
+		F46462302F83BFCD0094BA5F /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -157,17 +158,18 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
 		};
-		F46462312F83C0660094BA5F /* Run Script */ = {
+		F46462312F83C0660094BA5F /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -175,7 +177,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = SwiftFormat;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -321,6 +323,7 @@
 				DEVELOPMENT_TEAM = 2DRS6S443Q;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = EasytoEat;
@@ -366,6 +369,7 @@
 				DEVELOPMENT_TEAM = 2DRS6S443Q;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = EasytoEat;

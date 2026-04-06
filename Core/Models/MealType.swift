@@ -1,4 +1,3 @@
-
 enum MealType: String, CaseIterable, Identifiable {
     case breakfast = "Breakfast"
     case lunch = "Lunch"

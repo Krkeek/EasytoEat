@@ -1,7 +1,7 @@
 import Foundation
 
 struct Food: Identifiable {
-    let id : UUID
+    let id: UUID
     let name: String
     let brand: String?
     let description: String?

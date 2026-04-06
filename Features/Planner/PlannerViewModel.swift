@@ -1,6 +1,7 @@
-import Foundation
-import SwiftUI
 internal import Combine
+import Foundation
+
+import SwiftUI
 
 class PlannerViewModel: ObservableObject {
     @Published var meals: [Meal] = PlannerMockData.meals
@@ -15,24 +16,22 @@ class PlannerViewModel: ObservableObject {
         return NutritionInfo(
             id: UUID(),
             day: date,
-            CaloriesAmount: 1200,
-            CaloriesTarget: 2000,
-            CarbsAmount: totalCarbs,
-            FatAmount: totalFat,
-            ProteinAmount: totalProtein,
-            CarbsTarget: 300,
-            FatTarget: 70,
-            ProteinTarget: 180
+            caloriesAmount: 1200,
+            caloriesTarget: 2000,
+            carbsAmount: totalCarbs,
+            fatAmount: totalFat,
+            proteinAmount: totalProtein,
+            carbsTarget: 300,
+            fatTarget: 70,
+            proteinTarget: 180
         )
     }
     
-
     func items(for type: MealType, today: Date) -> [PlannerItem] {
         meals
             .filter { $0.type == type && Calendar.current.isDate($0.date, inSameDayAs: today) }
             .flatMap { $0.items }
     }
-    
     
     func title(for date: Date) -> String {
         let calendar = Calendar.current
@@ -47,5 +46,4 @@ class PlannerViewModel: ObservableObject {
             return date.formatted(date: .abbreviated, time: .omitted)
         }
     }
-    
 }
