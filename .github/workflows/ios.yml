@@ -1,16 +1,32 @@
 name: iOS CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Install SwiftLint
-        run: brew install swiftlint
+      # 1. Check Formatting (SwiftFormat)
+      # --lint tells it to fail the build if code isn't formatted correctly
+      - name: Run SwiftFormat
+        run: swiftformat . --lint
 
+      # 2. Check Style (SwiftLint)
       - name: Run SwiftLint
         run: swiftlint
+
+      # 3. Check Build (xcodebuild)
+      # Replace 'YourProjectName' and 'iPhone 15' as needed
+      - name: Build App
+        run: |
+          xcodebuild build \
+            -scheme YourProjectName \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -quiet
