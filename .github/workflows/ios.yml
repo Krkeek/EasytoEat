@@ -27,7 +27,7 @@ jobs:
         run: swiftlint
 
       # 4. Build App
-        - name: Build App
+      - name: Build App
         run: |
           xcodebuild build \
             -scheme EasytoEat \
