@@ -1,8 +1,8 @@
 import Foundation
 
-struct PlannerMockData {
-
+enum PlannerMockData {
     // MARK: - Foods
+
     static let foods: [Food] = [
         Food(
             id: UUID(),
@@ -11,8 +11,17 @@ struct PlannerMockData {
             description: "Boiled eggs",
             imageSrc: "eggs",
             nutritions: [
-                Nutrition(id: UUID(), carbs: 1, fat: 11, protein: 13, calories: 155,
-                          amount: 100, unit: "g", createdAt: Date(), updatedAt: Date())
+                Nutrition(
+                    id: UUID(),
+                    carbs: 1,
+                    fat: 11,
+                    protein: 13,
+                    calories: 155,
+                    amount: 100,
+                    unit: "g",
+                    createdAt: Date(),
+                    updatedAt: Date()
+                )
             ],
             isStandalone: true,
             createdAt: Date(),
@@ -25,8 +34,17 @@ struct PlannerMockData {
             description: "Rolled oats",
             imageSrc: "oats",
             nutritions: [
-                Nutrition(id: UUID(), carbs: 66, fat: 7, protein: 17, calories: 389,
-                          amount: 100, unit: "g", createdAt: Date(), updatedAt: Date())
+                Nutrition(
+                    id: UUID(),
+                    carbs: 66,
+                    fat: 7,
+                    protein: 17,
+                    calories: 389,
+                    amount: 100,
+                    unit: "g",
+                    createdAt: Date(),
+                    updatedAt: Date()
+                )
             ],
             isStandalone: true,
             createdAt: Date(),
@@ -39,8 +57,17 @@ struct PlannerMockData {
             description: "Grilled chicken breast",
             imageSrc: "chicken",
             nutritions: [
-                Nutrition(id: UUID(), carbs: 0, fat: 3.6, protein: 31, calories: 165,
-                          amount: 100, unit: "g", createdAt: Date(), updatedAt: Date())
+                Nutrition(
+                    id: UUID(),
+                    carbs: 0,
+                    fat: 3.6,
+                    protein: 31,
+                    calories: 165,
+                    amount: 100,
+                    unit: "g",
+                    createdAt: Date(),
+                    updatedAt: Date()
+                )
             ],
             isStandalone: true,
             createdAt: Date(),
@@ -53,8 +80,17 @@ struct PlannerMockData {
             description: "White rice",
             imageSrc: "rice",
             nutritions: [
-                Nutrition(id: UUID(), carbs: 28, fat: 0.3, protein: 2.7, calories: 130,
-                          amount: 100, unit: "g", createdAt: Date(), updatedAt: Date())
+                Nutrition(
+                    id: UUID(),
+                    carbs: 28,
+                    fat: 0.3,
+                    protein: 2.7,
+                    calories: 130,
+                    amount: 100,
+                    unit: "g",
+                    createdAt: Date(),
+                    updatedAt: Date()
+                )
             ],
             isStandalone: true,
             createdAt: Date(),
@@ -67,8 +103,17 @@ struct PlannerMockData {
             description: "Fresh banana",
             imageSrc: "banana",
             nutritions: [
-                Nutrition(id: UUID(), carbs: 23, fat: 0.3, protein: 1.1, calories: 89,
-                          amount: 100, unit: "g", createdAt: Date(), updatedAt: Date())
+                Nutrition(
+                    id: UUID(),
+                    carbs: 23,
+                    fat: 0.3,
+                    protein: 1.1,
+                    calories: 89,
+                    amount: 100,
+                    unit: "g",
+                    createdAt: Date(),
+                    updatedAt: Date()
+                )
             ],
             isStandalone: true,
             createdAt: Date(),
@@ -76,12 +121,13 @@ struct PlannerMockData {
         )
     ]
 
-    // Helper to fetch food by name
+    /// Helper to fetch food by name
     static func food(_ name: String) -> Food {
         foods.first { $0.name == name }!
     }
 
     // MARK: - Recipes
+
     static let recipes: [Recipe] = [
         Recipe(
             id: UUID(),
@@ -138,12 +184,13 @@ struct PlannerMockData {
         )
     ]
 
-    // Helper
+    /// Helper
     static func recipe(_ name: String) -> Recipe {
         recipes.first { $0.name == name }!
     }
 
     // MARK: - Meals (8 meals for different types)
+
     static let meals: [Meal] = [
         Meal(
             id: UUID(),
@@ -154,7 +201,7 @@ struct PlannerMockData {
             ],
             date: Date(),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -164,7 +211,7 @@ struct PlannerMockData {
             ],
             date: Date(),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -174,7 +221,7 @@ struct PlannerMockData {
             ],
             date: Date(),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -184,7 +231,7 @@ struct PlannerMockData {
             ],
             date: Date(),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -194,7 +241,7 @@ struct PlannerMockData {
             ],
             date: Date().addingTimeInterval(86400),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -204,7 +251,7 @@ struct PlannerMockData {
             ],
             date: Date().addingTimeInterval(86400),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -214,7 +261,7 @@ struct PlannerMockData {
             ],
             date: Date().addingTimeInterval(86400),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         ),
         Meal(
             id: UUID(),
@@ -224,7 +271,7 @@ struct PlannerMockData {
             ],
             date: Date().addingTimeInterval(86400),
             createdAt: Date(),
-            updatedAt: Date(),
+            updatedAt: Date()
         )
     ]
 }

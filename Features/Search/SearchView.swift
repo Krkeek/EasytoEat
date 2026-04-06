@@ -6,7 +6,7 @@ struct SearchView: View {
     @State private var selectedItems = Set<UUID>()
     @State private var editMode: EditMode = .inactive
     @State private var showingSheet = false
-    
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -41,7 +41,7 @@ struct SearchView: View {
                         }
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if !selectedItems.isEmpty {
                         Button {
@@ -75,17 +75,17 @@ struct SearchView: View {
                         ActionRow(title: "Add to Meal Plan", icon: "calendar.badge.plus", color: .blue) {
                             performAction(type: .addToMealPlan)
                         }
-                        
+
                         ActionRow(title: "Add to Collection", icon: "folder.badge.plus", color: .purple) {
                             performAction(type: .addToCollection)
                         }
-                        
+
                         ActionRow(title: "View Calories Info", icon: "flame.fill", color: .orange) {
                             performAction(type: .viewCalories)
                         }
-                        
+
                         Divider().padding(.vertical, 4)
-                        
+
                         ActionRow(title: "Delete Items", icon: "trash", color: .red, isDestructive: true) {
                             performAction(type: .delete)
                         }
@@ -101,25 +101,25 @@ struct SearchView: View {
             }
         }
     }
-    
+
     enum ActionType {
         case addToMealPlan, addToCollection, viewCalories, delete
     }
-    
+
     private func performAction(type: ActionType) {
         let items = filteredItems.filter { selectedItems.contains($0.id) }
-        
+
         switch type {
-        case .addToMealPlan:
-            print("Adding \(items.count) items to plan...")
-        case .addToCollection:
-            print("Saving \(items.count) items to favorites...")
-        case .viewCalories:
-            print("Calculating total calories...")
-        case .delete:
-            print("Deleting \(items.count) items...")
+            case .addToMealPlan:
+                print("Adding \(items.count) items to plan...")
+            case .addToCollection:
+                print("Saving \(items.count) items to favorites...")
+            case .viewCalories:
+                print("Calculating total calories...")
+            case .delete:
+                print("Deleting \(items.count) items...")
         }
-        
+
         // Close sheet and reset selection
         showingSheet = false
         withAnimation {
@@ -127,19 +127,19 @@ struct SearchView: View {
             editMode = .inactive
         }
     }
-    
+
     var filteredItems: [SearchResult] {
         var allItems: [SearchResult] = []
         switch selectedScope {
-        case .global:
-            allItems.append(contentsOf: PlannerMockData.foods.map { SearchResult.food($0) })
-            allItems.append(contentsOf: PlannerMockData.recipes.map { SearchResult.recipe($0) })
-        case .recipes:
-            allItems.append(contentsOf: PlannerMockData.recipes.map { SearchResult.recipe($0) })
-        case .food:
-            allItems.append(contentsOf: PlannerMockData.foods.map { SearchResult.food($0) })
+            case .global:
+                allItems.append(contentsOf: PlannerMockData.foods.map { SearchResult.food($0) })
+                allItems.append(contentsOf: PlannerMockData.recipes.map { SearchResult.recipe($0) })
+            case .recipes:
+                allItems.append(contentsOf: PlannerMockData.recipes.map { SearchResult.recipe($0) })
+            case .food:
+                allItems.append(contentsOf: PlannerMockData.foods.map { SearchResult.food($0) })
         }
-        
+
         if query.isEmpty { return allItems }
         return allItems.filter { $0.name.localizedCaseInsensitiveContains(query) }
     }
@@ -158,13 +158,13 @@ struct ActionRow: View {
                 Image(systemName: icon)
                     .font(.title3)
                     .frame(width: 30)
-                
+
                 Text(title)
                     .font(.body)
                     .fontWeight(.medium)
-                
+
                 Spacer()
-                
+
                 Image(systemName: "chevron.right")
                     .font(.caption2)
                     .foregroundColor(.secondary)
@@ -215,39 +215,39 @@ enum SearchScope: String, CaseIterable {
 enum SearchResult: Identifiable {
     case food(Food)
     case recipe(Recipe)
-    
+
     var id: UUID {
         switch self {
-        case .food(let food): return food.id
-        case .recipe(let recipe): return recipe.id
+            case let .food(food): food.id
+            case let .recipe(recipe): recipe.id
         }
     }
-    
+
     var name: String {
         switch self {
-        case .food(let food): return food.name
-        case .recipe(let recipe): return recipe.name
+            case let .food(food): food.name
+            case let .recipe(recipe): recipe.name
         }
     }
-    
+
     var description: String? {
         switch self {
-        case .food(let food): return food.description
-        case .recipe: return nil
+            case let .food(food): food.description
+            case .recipe: nil
         }
     }
-    
+
     var imageSrc: String? {
         switch self {
-        case .food(let food): return food.imageSrc
-        case .recipe(let recipe): return recipe.imageSrc
+            case let .food(food): food.imageSrc
+            case let .recipe(recipe): recipe.imageSrc
         }
     }
-    
+
     var type: SearchScope {
         switch self {
-        case .food: return .food
-        case .recipe: return .recipes
+            case .food: .food
+            case .recipe: .recipes
         }
     }
 }

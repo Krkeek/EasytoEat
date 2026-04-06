@@ -15,9 +15,9 @@ struct PlannerView: View {
                         Image(systemName: "chevron.left")
                             .font(.title2)
                     })
-                    
+
                     Spacer()
-                    
+
                     Button {
                         withAnimation {
                             showDatePicker = true
@@ -27,28 +27,27 @@ struct PlannerView: View {
                             .font(.headline)
                     }
                     .buttonStyle(.plain)
-                        
+
                     Spacer()
-                    
+
                     Button(action: {
                         vm.selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.selectedDate)!
                     }, label: {
                         Image(systemName: "chevron.right")
                             .font(.title2)
                     })
-                    
                 }
                 .padding(.horizontal)
-                
+
                 List {
                     let todayNutrition = vm.nutritionInfo(for: vm.selectedDate)
                     let eaten = todayNutrition.caloriesAmount
                     let target = todayNutrition.caloriesTarget
                     let remaining = max(target - eaten, 0)
-                    
+
                     VStack {
                         ZStack {
-                            Gauge(value: eaten, in: 0...target) {
+                            Gauge(value: eaten, in: 0 ... target) {
                                 Image(systemName: "flame.fill")
                                     .foregroundStyle(.red)
                             } currentValueLabel: {
@@ -60,7 +59,7 @@ struct PlannerView: View {
                             .scaleEffect(2)
                             .padding(.top, 30)
                             .padding(.bottom, 20)
-                            
+
                             HStack {
                                 VStack {
                                     Text("Target")
@@ -71,7 +70,7 @@ struct PlannerView: View {
                                         .font(.headline)
                                 }
                                 .frame(width: 200)
-                                
+
                                 VStack {
                                     Text("Remaining")
                                         .font(.caption)
@@ -83,7 +82,7 @@ struct PlannerView: View {
                                 .frame(width: 200)
                             }
                         }
-                        
+
                         HStack {
                             VStack(alignment: .leading) {
                                 HStack {
@@ -94,12 +93,12 @@ struct PlannerView: View {
                                         .font(.caption2)
                                         .bold()
                                 }
-                                Gauge(value: todayNutrition.carbsAmount, in: 0...todayNutrition.carbsTarget) {}
+                                Gauge(value: todayNutrition.carbsAmount, in: 0 ... todayNutrition.carbsTarget) {}
                                     .gaugeStyle(.accessoryLinear)
                                     .tint(.blue)
                                     .frame(maxWidth: 100)
                             }
-                            
+
                             VStack(alignment: .leading) {
                                 HStack {
                                     Text("Fat")
@@ -109,12 +108,12 @@ struct PlannerView: View {
                                         .font(.caption2)
                                         .bold()
                                 }
-                                Gauge(value: todayNutrition.fatAmount, in: 0...todayNutrition.fatTarget) {}
+                                Gauge(value: todayNutrition.fatAmount, in: 0 ... todayNutrition.fatTarget) {}
                                     .gaugeStyle(.accessoryLinear)
                                     .tint(.orange)
                                     .frame(maxWidth: 100)
                             }
-                            
+
                             VStack(alignment: .leading) {
                                 HStack {
                                     Text("Protein")
@@ -124,7 +123,7 @@ struct PlannerView: View {
                                         .font(.caption2)
                                         .bold()
                                 }
-                                Gauge(value: todayNutrition.proteinAmount, in: 0...todayNutrition.proteinTarget) {}
+                                Gauge(value: todayNutrition.proteinAmount, in: 0 ... todayNutrition.proteinTarget) {}
                                     .gaugeStyle(.accessoryLinear)
                                     .tint(.green)
                                     .frame(maxWidth: 100)
@@ -132,33 +131,33 @@ struct PlannerView: View {
                         }
                         .padding(.vertical, 10)
                     }
-                    
+
                     ForEach(MealType.allCases) { type in
                         let items = vm.items(for: type, today: vm.selectedDate)
-                        
+
                         if !items.isEmpty {
                             Section(header: HStack {
                                 HStack(spacing: 4) {
-                                                Text(type.rawValue)
-                                                Text("•")
-                                                    .foregroundColor(.secondary)
-                                                Text("530kcal")
-                                                    .font(.subheadline)
-                                                    .fontWeight(.regular)
-                                                    .foregroundColor(.secondary)
-                                            }
-                                            .font(.headline)
-                                            .textCase(nil)
-                                
+                                    Text(type.rawValue)
+                                    Text("•")
+                                        .foregroundColor(.secondary)
+                                    Text("530kcal")
+                                        .font(.subheadline)
+                                        .fontWeight(.regular)
+                                        .foregroundColor(.secondary)
+                                }
+                                .font(.headline)
+                                .textCase(nil)
+
                                 Spacer()
-                                
+
                                 Menu {
                                     Button {
                                         print("Add meal to \(type.rawValue)")
                                     } label: {
                                         Label("Add Meal", systemImage: "plus")
                                     }
-                                    
+
                                     Button {
                                         print("Edit layout for \(type.rawValue)")
                                     } label: {
@@ -169,15 +168,15 @@ struct PlannerView: View {
                                     } label: {
                                         Label("Calories Info", systemImage: "flame.fill")
                                     }
-                                    
+
                                     Divider()
-                                    
+
                                     Button(role: .destructive) {
                                         print("Clear all \(type.rawValue) meals")
                                     } label: {
                                         Label("Clear", systemImage: "trash")
                                     }
-                                    
+
                                 } label: {
                                     Image(systemName: "slider.horizontal.3")
                                         .foregroundColor(.secondary)
@@ -194,20 +193,19 @@ struct PlannerView: View {
                                                 .clipped()
                                                 .cornerRadius(8)
                                         }
-                                        
+
                                         VStack(alignment: .leading, spacing: 2) {
                                             Text(item.displayName)
                                                 .font(.headline)
-                                            
+
                                             Text(item.subtitle)
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
                                         }
-                                        
+
                                         Spacer()
-                                        
+
                                         Menu {
-                                         
                                             Button {
                                                 // edit
                                             } label: {
@@ -215,17 +213,17 @@ struct PlannerView: View {
                                             }
                                             Button {
                                                 // replace
-                                                } label: {
-                                                    Label("Replace", systemImage: "arrow.left.arrow.right")
-                                                }
-                                            
+                                            } label: {
+                                                Label("Replace", systemImage: "arrow.left.arrow.right")
+                                            }
+
                                             Divider()
                                             Button(role: .destructive) {
                                                 // delete
                                             } label: {
                                                 Label("Delete", systemImage: "trash")
                                             }
-                                          
+
                                         } label: {
                                             Image(systemName: "ellipsis")
                                                 .rotationEffect(.degrees(90))
@@ -246,15 +244,23 @@ struct PlannerView: View {
                         .onEnded { value in
                             let horizontal = value.translation.width
                             let vertical = value.translation.height
-                            
-                            if abs(horizontal) > 60 && abs(horizontal) > abs(vertical) {
+
+                            if abs(horizontal) > 60, abs(horizontal) > abs(vertical) {
                                 if horizontal < -50 {
                                     withAnimation {
-                                        vm.selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: vm.selectedDate)!
+                                        vm.selectedDate = Calendar.current.date(
+                                            byAdding: .day,
+                                            value: 1,
+                                            to: vm.selectedDate
+                                        )!
                                     }
                                 } else if horizontal > 50 {
                                     withAnimation {
-                                        vm.selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: vm.selectedDate)!
+                                        vm.selectedDate = Calendar.current.date(
+                                            byAdding: .day,
+                                            value: -1,
+                                            to: vm.selectedDate
+                                        )!
                                     }
                                 }
                             }
@@ -276,20 +282,20 @@ struct PlannerView: View {
                             Image(systemName: "plus")
                                 .font(.title2)
                         }
-                        
+
                         Menu {
                             Button {
                                 print("Regenerate Day tapped")
                             } label: {
                                 Label("Regenerate Day", systemImage: "arrow.clockwise")
                             }
-                            
+
                             Button {
                                 print("Edit Meal Layout tapped")
                             } label: {
                                 Label("Edit Meal Layout", systemImage: "square.and.pencil")
                             }
-                            
+
                             Button(role: .destructive) {
                                 print("Clear Day tapped")
                             } label: {
@@ -348,7 +354,6 @@ struct PlannerView: View {
             .padding()
             .presentationDetents([.medium])
         }
-
     }
 }
 

@@ -24,5 +24,4 @@ struct AppRouter: View {
                 }
         }
     }
-    
 }
